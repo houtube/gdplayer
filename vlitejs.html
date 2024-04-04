@@ -1,0 +1,21 @@
+<link href="https://cdn.jsdelivr.net/npm/vlitejs@4/dist/vlite.css" rel="stylesheet" />
+
+
+<video poster="https://bit.ly/bbsampleposter" height="100%" width="100%" id="player" class="vlite-js" src="https://bit.ly/bbsamplevideo"></video>
+
+<script src="https://cdn.jsdelivr.net/npm/vlitejs@4" ></script>
+<script>
+  new Vlitejs('#player');
+</script>
+<script>
+  let apikey = 'AIzaSyD739-eb6NzS_KbVJq1K8ZAxnrMfkIqPyw';
+  function getparam(a,e){return e||(e=window.location.href),new URL(e).searchParams.get(a)}
+
+  let video = document.getElementById('player');
+  if(getparam('id')){
+    let json = JSON.parse(atob(getparam('id'))) ;
+    let driveid = json.id;
+    video.src = `https://www.googleapis.com/drive/v3/files/${driveid }?alt=media&key=${apikey}`;
+    video.poster = 'https://lh3.googleusercontent.com/d/'+driveid;
+  }
+</script>
